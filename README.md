@@ -1,2 +1,1 @@
-# spc-demo
-SPC, CPK
+整理常用SPC图表示例
