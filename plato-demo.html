@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="chart" style="width: 1000px; height: 600px;"></div>
+        <p>{{ msg }}</p>
+    </div>
+
+
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello, Vue!',
+                chart: null
+            },
+            mounted() {
+                this.chart = echarts.init(document.getElementById('chart'))
+                const option = {
+                    "title": {
+                        "text": "柏拉图"
+                    },
+                    "grid": {
+                        "left": "3%",
+                        "right": "4%",
+                        "bottom": "3%",
+                        "containLabel": true
+                    },
+                    "tooltip": {
+                        "trigger": "axis",
+                        "axisPointer": {
+                            "type": "shadow"
+                        }
+                    },
+                    "xAxis": {
+                        "type": "category",
+                        "data": [
+                            "A类不良\n(52.60%)",
+                            "C类不良\n(34.68%)",
+                            "B类不良\n(12.72%)"
+                        ],
+                        "name": "不良项",
+                        "axisLine": {
+                            "symbol": [
+                                "none",
+                                "arrow"
+                            ]
+                        },
+                        "boundaryGap": [
+                            "20%",
+                            "20%"
+                        ]
+                    },
+                    "yAxis": [
+                        {
+                            "type": "value",
+                            "name": "数量",
+                            "axisLine": {
+                                "symbol": [
+                                    "none",
+                                    "arrow"
+                                ]
+                            },
+                            "axisLabel": {}
+                        },
+                        {
+                            "type": "value",
+                            "name": "",
+                            "axisLine": {
+                                "show": false,
+                                "symbol": [
+                                    "none",
+                                    "none"
+                                ]
+                            },
+                            "axisLabel": {
+                                "show": false
+                            },
+                            "label": {
+                                "show": false
+                            }
+                        }
+                    ],
+                    "series": [
+                        {
+                            "name": "数量",
+                            "type": "bar",
+                            "stack": "总量",
+                            "label": {
+                                "show": true,
+                                "position": "top",
+                                "color": "#666"
+                            },
+                            "data": [
+                                91,
+                                60,
+                                22
+                            ],
+                            "itemStyle": {
+                                "color": "#81d3f8",
+                                "borderWidth": 1,
+                                "borderColor": "#000",
+                                "borderType": "solid"
+                            },
+                            "barWidth": "99%"
+                        },
+                        {
+                            "name": "累积百分比",
+                            "type": "line",
+                            "yAxisIndex": 1,
+                            "label": {
+                                "show": true,
+                                "position": "bottom"
+                            },
+                            "data": [
+                                52.6,
+                                87.28,
+                                100
+                            ],
+                            "symbolSize": 10,
+                            "lineStyle": {
+                                "color": "#d9001b"
+                            },
+                            "itemStyle": {
+                                "color": "#d9001b"
+                            }
+                        }
+                    ]
+                }
+                this.chart.setOption(option)
+            }
+        })
+    </script>
+</body>
+
+</html>
